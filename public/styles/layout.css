@@ -3,7 +3,7 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-html {
+ html {
   box-sizing: border-box;
 }
 *, *:before, *:after {
@@ -15,9 +15,20 @@ html {
  */
 
 body {
+  border: 1px solid red; 
+  font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
   color: #244751;
   background-color: #eee;
+}
+
+.container {
+  margin: auto;
+  border: 1px solid red;
+  width: 450px;
+  align-content: center;
+  background-color: white;
+  padding: 140px 10px;
 }
 
 /*
