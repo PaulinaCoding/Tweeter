@@ -6,56 +6,122 @@
 // Test / driver code (temporary). Eventually will get this from the server.
 
 
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-          "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-        },
-        "handle": "@SirIsaac"
-      },
-      "content": {
-        "text": "If I have seen further it is by standing on the shoulders of giants"
-      },
-      "created_at": 1461116232227
-    },
-    {
-      "user": {
-        "name": "Descartes",
-        "avatars": {
-          "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-          "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-          "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-        },
-        "handle": "@rd" },
-        "content": {
-        "text": "Je pense , donc je suis"
-      },
-      "created_at": 1461113959088
-    },
-    {
-      "user": {
-        "name": "Johann von Goethe",
-        "avatars": {
-          "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-          "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-          "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-        },
-        "handle": "@johann49"
-      },
-      "content": {
-        "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-      },
-      "created_at": 1461113796368
-    }
-  ];
+// const data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": {
+//         "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+//         "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+//           "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+//         },
+//         "handle": "@SirIsaac"
+//       },
+//       "content": {
+//         "text": "If I have seen further it is by standing on the shoulders of giants"
+//       },
+//       "created_at": 1461116232227
+//     },
+//     {
+//       "user": {
+//         "name": "Descartes",
+//         "avatars": {
+//           "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
+//           "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
+//           "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
+//         },
+//         "handle": "@rd" },
+//         "content": {
+//         "text": "Je pense , donc je suis"
+//       },
+//       "created_at": 1461113959088
+//     },
+//     {
+//       "user": {
+//         "name": "Johann von Goethe",
+//         "avatars": {
+//           "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+//           "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
+//           "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+//         },
+//         "handle": "@johann49"
+//       },
+//       "content": {
+//         "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
+//       },
+//       "created_at": 1461113796368
+//     }
+//   ];
 
 $('#document').ready(function(e){
+
+
+// /////////////////////////////////////////////////////////////////
+// ////Roy's code example
+//   $('#tweetForm').on('submit', function(e) {
+//     e.preventDefault();
+
+//     // 1. Get the data from the text area
+//     let newTweet = $('textArea')
+//     console.log("New tweet test",newTweet);
+
+//     // 2. Make a AJAX request using that data
+//     $.ajax('/tweets', {
+//       method: 'POST',
+//       data: newTweet
+//     }).done(function(shownTweet) {
+//       console.log(shownTweet);
+//       renderTweets(data);     // 1. Make the new product show up
+//       // let $liE = createTweetElement(product);
+//       // $('ul#products').append($liElement);
+
+//       // 2. Clear the form
+//       $('#textArea').val('');
+
+//     })
+//   });
+//   ///////////////////////////////////////////////////
+
+  $(function loadTweets() {
+    $('#tweetForm').on('submit', function(e) {
+      e.preventDefault();
+      let newTweetContent = $('textArea').val();
+      console.log("New tweet test",newTweetContent);
+      // 2. Make a AJAX request using that data
+      $.ajax('/tweets', {
+        method: 'GET',
+        data: newTweetContent,
+      }).done(function(ExistingTweets) {
+        let newTweetJson = {
+            "user": {
+              "name": "Newton",
+              "avatars": {
+                "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+                "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+                  "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+                },
+                "handle": "@SirIsaac"
+              },
+              "content": {
+                "text": newTweetContent,
+              },
+              "created_at": 1461116232227
+        };
+        
+        ExistingTweets.push(newTweetJson);
+       
+       // console.log(shownTweet);
+        renderTweets(ExistingTweets);
+        //console.log("Testing rendering tweets",renderTweets(shownTweet));
+        
   
+        });
+    });
+  })
   
+
+///////////////////////////////////////////////////
+
   function renderTweets(tweets) {
     let $addedTweets = $('#tweetContainer').empty();
   //Looping through the tweets
@@ -64,7 +130,7 @@ $('#document').ready(function(e){
     }
     return $addedTweets;
   };
-  renderTweets(data);
+  //renderTweets(data);
 
 
   function createTweetElement(tweet) {
@@ -72,7 +138,6 @@ $('#document').ready(function(e){
 
   //Appended  the heather
     let $header = $('<header>').addClass('tweetHeader');
-    console.log('check the error with data', tweet)
     let $img = $('<img>').addClass('authorPic').attr('src', tweet.user.avatars.small);
     let $h3 = $('<h3>'+ tweet.user.name +'</h3>').addClass('author');
     let $h5 = $('<h5>'+ tweet.user.handle +'</h5>').addClass('authorAddress');
