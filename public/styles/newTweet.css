@@ -58,7 +58,7 @@ margin: 3px 15px 9px 11px
 .authorPic {
   float:left;
   border-radius: 5px;
-  margin: 7px;
+  margin: 4px 5px 4px 6px
 }
 
 .author {
@@ -87,4 +87,14 @@ margin: 3px 15px 9px 11px
   color: #5bbaaa;
   visibility: hidden;
 }
+
+.fa.fa-flag {
+  padding-right: 4px;
+  }
+
+.fa.fa-retweet {
+ padding-right: 4px;
+}
+
+
 
