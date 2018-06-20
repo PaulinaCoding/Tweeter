@@ -30,26 +30,23 @@ margin: 3px 15px 9px 11px
   color:red;
 }
 
-/* Submittet Tweets */
+/* Submitted Tweets */
 
-.tweetContainer {
+
+.tweetArticle {
   margin: 15px 0 15px 0;
   border: 1px solid lightgrey;
   border-radius: 5px;
 }
 
-.tweetContainer:hover  {
+.tweetArticle:hover {
   border: 1px solid black;
 }
 
-.tweetContainer:hover .footerIcons {
+.tweetArticle:hover .footerIcons {
   float: right;
   color: #5bbaaa;
   visibility: visible;
-}
-
-.tweetArticle {
-  
 }
 
 .tweetHeader {
@@ -65,6 +62,7 @@ margin: 3px 15px 9px 11px
 }
 
 .author {
+  color: grey;
 }
 
 .authorAddress {
@@ -84,7 +82,7 @@ margin: 3px 15px 9px 11px
   padding: 10px 10px;
 }
 
-.footerIcons{
+.footerIcons {
   float: right;
   color: #5bbaaa;
   visibility: hidden;

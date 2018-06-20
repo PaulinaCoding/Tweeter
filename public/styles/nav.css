@@ -1,5 +1,4 @@
-#nav-bar {
-  border: 1px solid red; 
+#nav-bar { 
   background-color: #00a087;
   height: 80px;
   padding: 0 2em;
@@ -9,14 +8,12 @@
 }
 
 #nav-bar .logo {
-  border: 1px solid red;
   width: 80px;
   height: 80px;
   vertical-align: middle;
 }
 
 #nav-bar .header {
-  border: 1px solid red;
   color: #e8fdff;
   font-size: 2em;
   line-height: 2em;

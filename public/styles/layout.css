@@ -15,7 +15,6 @@
  */
 
 body {
-  border: 1px solid red; 
   font-family: 'Roboto Condensed', sans-serif;
   margin: 0;
   color: #244751;
@@ -24,7 +23,6 @@ body {
 
 .container {
   margin: auto;
-  border: 1px solid red;
   width: 450px;
   align-content: center;
   background-color: white;
