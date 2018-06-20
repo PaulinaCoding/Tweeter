@@ -1,0 +1,92 @@
+.new-tweet {
+  border: 1px solid;
+  border-radius: 5px;
+  background-color: #e8e8e8;
+  border-color: lightgray;
+}
+
+.new-tweet #textArea {
+  padding: 5px;
+  margin: 1px 0 0 10px;
+  width: 95%;
+}
+
+.new-tweet #tweetHeading {
+border-bottom: 1px solid;
+margin: 0px 10px 10px 10px;
+padding: 10px;
+}
+
+.new-tweet #tweetButton {
+padding: 1px;
+margin: 3px 15px 9px 11px
+}
+
+.counter {
+  margin-left: 310px;
+}
+
+.tooManyChar {
+  color:red;
+}
+
+/* Submittet Tweets */
+
+.tweetContainer {
+  margin: 15px 0 15px 0;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+}
+
+.tweetContainer:hover  {
+  border: 1px solid black;
+}
+
+.tweetContainer:hover .footerIcons {
+  float: right;
+  color: #5bbaaa;
+  visibility: visible;
+}
+
+.tweetArticle {
+  
+}
+
+.tweetHeader {
+  border: 1px solid lightgray;
+  background-color: #e8e8e8;
+  border-radius: 5px 5px 0 0;
+}
+
+.authorPic {
+  float:left;
+  border-radius: 5px;
+  margin: 7px;
+}
+
+.author {
+}
+
+.authorAddress {
+  float: right;
+  margin: -45px 10px;
+  color: grey;
+}
+
+.tweetContent{
+  padding: 10px;
+}
+
+.tweetFooter {
+  border: 0.5px solid lightgrey;
+  height: 3em;
+  font-size: 0.8em;
+  padding: 10px 10px;
+}
+
+.footerIcons{
+  float: right;
+  color: #5bbaaa;
+  visibility: hidden;
+}
+
