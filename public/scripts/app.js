@@ -53,75 +53,67 @@
 //     }
 //   ];
 
-$('#document').ready(function(e){
+$('#document').ready(function(e) {
+  
+  function loadTweets(){
+    $.ajax('/tweets').done(function(data){
+      $('.tweet-container').html('');
+      renderTweets(data);
+    })
+  }
 
-
-// /////////////////////////////////////////////////////////////////
-// ////Roy's code example
-//   $('#tweetForm').on('submit', function(e) {
-//     e.preventDefault();
-
-//     // 1. Get the data from the text area
-//     let newTweet = $('textArea')
-//     console.log("New tweet test",newTweet);
-
-//     // 2. Make a AJAX request using that data
-//     $.ajax('/tweets', {
-//       method: 'POST',
-//       data: newTweet
-//     }).done(function(shownTweet) {
-//       console.log(shownTweet);
-//       renderTweets(data);     // 1. Make the new product show up
-//       // let $liE = createTweetElement(product);
-//       // $('ul#products').append($liElement);
-
-//       // 2. Clear the form
-//       $('#textArea').val('');
-
-//     })
-//   });
-//   ///////////////////////////////////////////////////
-
-  $(function loadTweets() {
-    $('#tweetForm').on('submit', function(e) {
-      e.preventDefault();
-      let newTweetContent = $('textArea').val();
-      console.log("New tweet test",newTweetContent);
+  
+  function validation(dataValue){
+    if (dataValue === null || dataValue === ""){
+      return false;
+    }
+    return true;
+  }
+  
+  function validLength(dataLength){
+    if (dataLength > 140){
+      return false;
+    }
+    return true;
+  }
+  
+  
+  //using jQuery to prevent default events and submit form using AJAX
+  $('#tweetForm').on('submit', function(e) {
+    e.preventDefault();
+    // 1. Get the data from the form
+    let newTweetContent = $('textarea').val(); //dataValue = $('textarea').val();
+    let newTweetLength = newTweetContent.length;
+    let data = $('#tweetForm').serialize();
+    //Check data validity
+    let validDataLength = validLength(newTweetLength);
+    let validData = validation(newTweetContent);
+    // console.log(validData);
+    if (validData && validDataLength){
       // 2. Make a AJAX request using that data
       $.ajax('/tweets', {
-        method: 'GET',
-        data: newTweetContent,
-      }).done(function(ExistingTweets) {
-        let newTweetJson = {
-            "user": {
-              "name": "Newton",
-              "avatars": {
-                "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-                "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-                  "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-                },
-                "handle": "@SirIsaac"
-              },
-              "content": {
-                "text": newTweetContent,
-              },
-              "created_at": 1461116232227
-        };
-        
-        ExistingTweets.push(newTweetJson);
-       
-       // console.log(shownTweet);
-        renderTweets(ExistingTweets);
-        //console.log("Testing rendering tweets",renderTweets(shownTweet));
-        
+        method: 'POST',
+        data: data
+      }).done(function(data) {
+        loadTweets();
+        // $('.tweet-container').prepend(result);
+        // 2. Clear the form
+        $('textarea').val('');
+      })
+    } 
+    if (!validData){
+      //alert("Empty Tweet!")
+      //$('#tweetButton').prop('disabled', true);
+      $('#tweetError').text('This tweet is empty!')
+    }
+    if (!validDataLength ){
+      //alert("Tweet is too long!")
+      //$('#tweetButton').prop('disabled', true);
+      $('#tweetError').text('This tweet is too long!')
+    }
+  });
   
-        });
-    });
-  })
-  
-
-///////////////////////////////////////////////////
-
+/////////////////////////////////////////////////
   function renderTweets(tweets) {
     let $addedTweets = $('#tweetContainer').empty();
   //Looping through the tweets
@@ -139,15 +131,15 @@ $('#document').ready(function(e){
   //Appended  the heather
     let $header = $('<header>').addClass('tweetHeader');
     let $img = $('<img>').addClass('authorPic').attr('src', tweet.user.avatars.small);
-    let $h3 = $('<h3>'+ tweet.user.name +'</h3>').addClass('author');
-    let $h5 = $('<h5>'+ tweet.user.handle +'</h5>').addClass('authorAddress');
+    let $h3 = $('<h3>').text(tweet.user.name).addClass('author');
+    let $h5 = $('<h5>').text(tweet.user.handle).addClass('authorAddress');
     $header.append($img);
     $header.append($h3);
     $header.append($h5);
     $tweet.append($header);
 
   //Appended  the tweet content
-    let $p = $('<p>'+ tweet.content.text +'</p>').addClass('tweetContent');
+    let $p = $('<p>').text(tweet.content.text).addClass('tweetContent');
     $tweet.append($p);
 
   //Appended the footer
@@ -165,5 +157,12 @@ $('#document').ready(function(e){
     console.log($tweet); // to see what it looks like
     return $tweet; 
   };
+
+// Toogle sliding the new tweet section up and down and placing the curson in the textarea
+  $('#composeButton').click(function(){
+    $('.new-tweet').slideToggle("slow");
+    //var textareaFill = textarea.val();
+    $('#textArea').focus();
+  });
 
 });

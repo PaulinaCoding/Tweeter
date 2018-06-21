@@ -29,19 +29,19 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png" >
       <span class="header">Tweeter</span>
+      <button id="composeButton" type="submit" ><i class="fa fa-edit"> </i>Compose</button>
     </nav>
-
     <!-- Page-specific (main) content here -->
     <main class="container">
         <section class="new-tweet">
           <h2 id="tweetHeading">Compose Tweet</h2>
+          <label id="tweetError"></label>
           <form method="POST" action="/tweets/" id="tweetForm">
             <textarea id="textArea" name="text" placeholder="What are you humming about?"></textarea>
             <input id="tweetButton" type="submit" value="Tweet">
             <span class="counter" id="counter-container">140</span>
           </form>
         </section>
-
         <section id="tweetContainer">
           <!-- The article container used to be here -->
         </section>

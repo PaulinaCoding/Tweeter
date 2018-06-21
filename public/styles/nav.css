@@ -23,3 +23,24 @@
   padding-left: 10px;
 
 }
+
+#composeButton {
+  float: right;
+  margin: 15px;
+  height: 60%;
+  width: 10%;
+  border: solid black;
+  border-radius: 5px;
+  color: #00a087;
+}
+
+#composeButton.fa.fa-edit {
+  color: #00a087;
+}
+
+#composeButton:hover {
+  border: 1px solid black;
+  background: white;
+  color: black;
+}
+
