@@ -54,29 +54,32 @@
 //   ];
 
 $('#document').ready(function(e) {
-  
+
+
+/////////Using Ajax to load tweets//////////
   function loadTweets(){
-    $.ajax('/tweets').done(function(data){
+    $.ajax('/tweets').done(function(data) {
       $('.tweet-container').html('');
       renderTweets(data);
     })
   }
 
-  
-  function validation(dataValue){
+//
+  function validation(dataValue) {
     if (dataValue === null || dataValue === ""){
       return false;
-    }
+    } else {
     return true;
-  }
+    }
+  };
   
-  function validLength(dataLength){
-    if (dataLength > 140){
+  function validLength(dataLength) {
+    if (dataLength > 140) {
       return false;
-    }
+    } else {
     return true;
-  }
-  
+    }
+  };
   
   //using jQuery to prevent default events and submit form using AJAX
   $('#tweetForm').on('submit', function(e) {
