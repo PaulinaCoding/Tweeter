@@ -24,4 +24,4 @@ Tweeter is a simple Twitter clone app single Page App (SPA) build with HTML, CSS
 
 ## Final Product
 
-!['/urls - the main page'](https://github.com/Pau...)
+!['/urls - the main page'](https://github.com/PaulinaCoding/tweeter/blob/master/docs/Tweeter1.0.gif)
