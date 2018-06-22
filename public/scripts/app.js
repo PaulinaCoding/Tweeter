@@ -101,7 +101,7 @@ $('#document').ready(function(e) {
 ///////////////////////Appended the footer////////////////////
 
 
-    let now = moment(tweet.created_at).startOf('hour').fromNow();
+    let now = moment(tweet.created_at).startOf('minute').fromNow();
     // format('MMMM Do YYYY, h:mm:ss a');
     let $footer = $('<footer>'+ 'Created: '+ now + '</footer>').addClass('tweetFooter');
     let $footerIcons = $('<span>'+'</span>').addClass('footerIcons');
@@ -120,6 +120,7 @@ $('#document').ready(function(e) {
 // Toogle sliding the new tweet section up and down and placing the curson in the textarea
   $('#composeButton').click(function(){
     $('.new-tweet').slideToggle("slow");
+    $('.container').slideToggle("slow");
     $('#textArea').focus();
   });
 

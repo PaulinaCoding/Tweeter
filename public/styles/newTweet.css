@@ -3,6 +3,7 @@
   border-radius: 5px;
   background-color: #e8e8e8;
   border-color: lightgray;
+  display: none;
 }
 
 .new-tweet #textArea {
@@ -38,7 +39,6 @@ margin: 3px 15px 9px 11px
 
 /* Submitted Tweets */
 
-
 .tweetArticle {
   margin: 15px 0 15px 0;
   border: 1px solid lightgrey;
@@ -56,9 +56,10 @@ margin: 3px 15px 9px 11px
 }
 
 .tweetHeader {
-  border: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
   background-color: #e8e8e8;
   border-radius: 5px 5px 0 0;
+  padding: 5px 0px;
 }
 
 .authorPic {
@@ -82,7 +83,7 @@ margin: 3px 15px 9px 11px
 }
 
 .tweetFooter {
-  border: 0.5px solid lightgrey;
+  border-top: 0.5px solid lightgrey;
   height: 3em;
   font-size: 0.8em;
   padding: 10px 10px;
