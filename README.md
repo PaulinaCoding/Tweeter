@@ -1,6 +1,6 @@
 # Tweeter App
 
-Tweeter is a simple, single-page Twitter clone.
+Tweeter is a simple Twitter clone app single Page App (SPA) build with HTML, CSS, JS, Jquery and AJAX on the client-side, and Node, Express and MongoDB on the server-side.
 
 
 ## Getting Started
@@ -12,11 +12,12 @@ Tweeter is a simple, single-page Twitter clone.
 
 ## Dependencies
 
+- JQuery 
 - Express 4.13.4
 - Node 5.10.x or above
-- Body-parser 1.15.2 
+- Body-parser 1.15.2
 - Chance 1.0.2
-- Md5 2.1.0 
+- Md5 2.1.0
 - Moment 2.22.2
 - Mongodb 2.2.35
 - Nodemon 1.9.2

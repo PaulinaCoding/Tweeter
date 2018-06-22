@@ -5,70 +5,69 @@
  */
 // Test / driver code (temporary). Eventually will get this from the server.
 
-
-
 $('#document').ready(function(e) {
-
+  loadTweets()
 
 /////////Using Ajax to load tweets//////////
   function loadTweets(){
     $.ajax('/tweets').done(function(data) {
+
       $('.tweet-container').html('');
       renderTweets(data);
     })
   }
+
 //////Functions defining tweet value and length for crafting message when tweet is too long/too short////
-  function validation(dataValue) {
-    if (dataValue === null || dataValue === ""){
+  function tweetContentCheck(tweetContent) {
+    if (tweetContent === null || tweetContent === ""){
       return false;
     } else {
     return true;
     }
   };
   
-  function validLength(dataLength) {
-    if (dataLength > 140) {
+  function requiredLength(tweetLength) {
+    if (tweetLength > 140) {
       return false;
     } else {
     return true;
     }
   };
   
-  //using jQuery to prevent default events and submit form using AJAX
+//using jQuery to prevent default events and submit form using AJAX
   $('#tweetForm').on('submit', function(e) {
     e.preventDefault();
-    // 1. Get the data from the form
-    let newTweetContent = $('textarea').val(); //dataValue = $('textarea').val();
+// 1. Get the data from the form
+    let newTweetContent = $('textarea').val(); //tweetContent = $('textarea').val();
     let newTweetLength = newTweetContent.length;
     let data = $('#tweetForm').serialize();
-    //Check data validity
-    let validDataLength = validLength(newTweetLength);
-    let validData = validation(newTweetContent);
-    // console.log(validData);
-    if (validData && validDataLength){
+//Check data validity
+    let validTweetLength = requiredLength(newTweetLength);
+    let validTweet = tweetContentCheck(newTweetContent);
+// console.log(validTweet);
+    if (validTweet && validTweetLength){
       // 2. Make a AJAX request using that data
       $.ajax('/tweets', {
         method: 'POST',
         data: data
       }).done(function(data) {
         loadTweets();
-        // $('.tweet-container').prepend(result);
-        // 2. Clear the form
+// 2. Clear the form
         $('textArea').val('');
 //fixed the bug with tweet error showing even if the value is not too short/empty
         $('#tweetError').text('');
 //fixed the bug - it wasn't getting back to old 140 after submission
         $('#counter-container').text('140');
       })
-    } 
-    if (!validData){
-      $('#tweetError').text('This tweet is empty!')
     }
-    if (!validDataLength ){
-      $('#tweetError').text('This tweet is too long!')
+    if (!validTweet){
+      $('#tweetError').text('This tweet is empty!');
+    }
+    if (!validTweetLength ){
+      $('#tweetError').text('This tweet is too long!');
     }
   });
-  
+
 ///////////////Showing up new tweets then newer ones first///////////////////////
   function renderTweets(tweets) {
     let $addedTweets = $('#tweetContainer').empty();
@@ -78,7 +77,6 @@ $('#document').ready(function(e) {
     }
     return $addedTweets;
   };
-  ////renderTweets(data);
 
 
   function createTweetElement(tweet) {
@@ -98,9 +96,7 @@ $('#document').ready(function(e) {
     let $p = $('<p>').text(tweet.content.text).addClass('tweetContent');
     $tweet.append($p);
 
-///////////////////////Appended the footer////////////////////
-
-
+///////////////////////Appended the footer////////////////////////////////////////////
     let now = moment(tweet.created_at).startOf('minute').fromNow();
     // format('MMMM Do YYYY, h:mm:ss a');
     let $footer = $('<footer>'+ 'Created: '+ now + '</footer>').addClass('tweetFooter');
@@ -114,13 +110,12 @@ $('#document').ready(function(e) {
     $footer.append($footerIcons);
     $tweet.append($footer);
 
-    return $tweet; 
+    return $tweet;
   };
 
-// Toogle sliding the new tweet section up and down and placing the curson in the textarea
+// Toogle sliding the new tweet section up and down and placing the curson in the textarea////
   $('#composeButton').click(function(){
     $('.new-tweet').slideToggle("slow");
-    $('.container').slideToggle("slow");
     $('#textArea').focus();
   });
 

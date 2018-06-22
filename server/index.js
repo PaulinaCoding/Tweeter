@@ -15,7 +15,6 @@ app.use(express.static("public"));
 //The in-memory database of tweets object has been replapced with MongoDb
 //const db = require("./lib/in-memory-db");
 
-
 const MONGODB_URI = "mongodb://localhost:27017/tweeter";
 
 MongoClient.connect(MONGODB_URI, (err, db) => {
